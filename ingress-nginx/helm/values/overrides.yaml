@@ -1,0 +1,6 @@
+controller:
+  extraArgs:
+    udp-services-configmap: $(POD_NAMESPACE)/ingress-nginx-udp
+    tcp-services-configmap: $(POD_NAMESPACE)/ingress-nginx-tcp
+tcp:
+  53: "pi-hole/dns-tcp:53"

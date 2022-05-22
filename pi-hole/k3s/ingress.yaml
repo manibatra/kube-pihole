@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: pihole-ingress
+  namespace: pi-hole
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: pi-hole.home
+      http:
+        paths:
+          - backend:
+              service:
+                name: admin
+                port:
+                  name: admin
+            path: /
+            pathType: Prefix

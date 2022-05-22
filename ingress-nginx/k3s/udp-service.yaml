@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ingress-nginx-udp
+  namespace: ingress-nginx
+data:
+  53: "pi-hole/dns-udp:53"

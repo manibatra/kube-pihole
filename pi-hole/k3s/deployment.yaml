@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pi-hole
+  name: pi-hole
+  namespace: pi-hole
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pi-hole
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: pi-hole
+    spec:
+      containers:
+        - image: pihole/pihole:latest
+          name: pihole
+          resources:
+            limits:
+              memory: 128Mi
+            requests:
+              memory: 128Mi
+          ports:
+            - containerPort: 53
+              name: dns
+              protocol: UDP
+            - containerPort: 53
+              name: dns-tcp
+              protocol: TCP
+            - containerPort: 80
+              name: admin
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: pi-hole
+            - secretRef:
+                name: pihole-password
+          volumeMounts:
+            - mountPath: /etc/pihole/
+              name: etc-pihole
+            - mountPath: /etc/dnsmasq.d/
+              name: etc-dnsmasq
+      volumes:
+        - name: etc-pihole
+          persistentVolumeClaim:
+            claimName: etc-pihole
+        - name: etc-dnsmasq
+          persistentVolumeClaim:
+            claimName: etc-dnsmasq

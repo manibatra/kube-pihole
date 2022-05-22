@@ -1,0 +1,50 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: dns-udp
+  namespace: pi-hole
+  labels:
+    app: dns-udp
+spec:
+  ports:
+  - name: dns-udp
+    port: 53
+    protocol: UDP
+    targetPort: dns
+  selector:
+    app: pi-hole
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: dns-tcp
+  namespace: pi-hole
+  labels:
+    app: dns-tcp
+spec:
+  ports:
+    - name: dns-tcp
+      port: 53
+      protocol: TCP
+      targetPort: dns-tcp
+  selector:
+    app: pi-hole
+  type: ClusterIP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: admin
+  namespace: pi-hole
+  labels:
+    app: admin
+spec:
+  ports:
+    - name: admin
+      port: 80
+      protocol: TCP
+      targetPort: admin
+  selector:
+    app: pi-hole
+  type: ClusterIP

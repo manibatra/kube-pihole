@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pi-hole
+  namespace: pi-hole
+data:
+  TZ: "Australia/Sydney"
+  VIRTUAL_HOST: "pi-hole.home"
