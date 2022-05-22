@@ -22,7 +22,7 @@ The repository comes with manifests to set up [ingress-nginx](https://kubernetes
 1. Install the helm chart with overrides : `helm upgrade --namespace ingress-nginx --repo https://kubernetes.github.io/ingress-nginx ingress-nginx ingress-nginx -f ./ingress-ngnx/helm/values/overrides.yaml`
 2. Apply the YAMLs for the udp service and load balancer : `k apply -f ./k3s/`
 3. Disable systemd-resolve service to stop it from listening on port 53 : `systemctl disable systemd-resolve`
-4. Set your DNS server to the IP of one of your nodes. 
+4. Set IP of one of your nodes as your DNS server. 
 
 
 ## Notes 
