@@ -26,5 +26,5 @@ The repository comes with manifests to set up [ingress-nginx](https://kubernetes
 
 
 ## Notes 
-- We create a separate load balancer for the UDP protocol because the service type `LoadBalancer` does not support a multi protocol setup. though the support is in the [pipeline]https://github.com/kubernetes/enhancements/issues/1435). 
+- We create a separate load balancer for the UDP protocol because the service type `LoadBalancer` does not support a multi protocol setup. though the support is in the [pipeline](https://github.com/kubernetes/enhancements/issues/1435). 
 - The UDP service is not exposed using helm chart values because doing so forces helm to add the service to the TCP load balancer leading to a failure due to the reason mentioned above. 
