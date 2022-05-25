@@ -30,4 +30,4 @@ The repository comes with manifests to set up [ingress-nginx](https://kubernetes
 - The UDP service is not exposed using helm chart values because doing so forces helm to add the service to the TCP load balancer leading to a failure due to the reason mentioned above. 
 
 ## TO DO
--[ ] IPv6 support
+- [ ] IPv6 support
