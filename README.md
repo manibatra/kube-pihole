@@ -19,7 +19,7 @@ done
 3. Apply the pi-hole YAMLs : `kubectl apply -f ./pi-hole/k3s/`
 
 The repository comes with manifests to set up [ingress-nginx](https://kubernetes.github.io/ingress-nginx/) services to access the pi-hole admin interface and forward the DNS queries to the pi-hole service.
-1. Install the helm chart with overrides : `helm upgrade --namespace ingress-nginx --repo https://kubernetes.github.io/ingress-nginx ingress-nginx ingress-nginx -f ./ingress-ngnx/helm/values/overrides.yaml`
+1. Install the helm chart with overrides : `helm upgrade --install --create-namespace --namespace ingress-nginx --repo https://kubernetes.github.io/ingress-nginx ingress-nginx ingress-nginx -f ./ingress-ngnx/helm/values/overrides.yaml`
 2. Apply the YAMLs for the udp service and load balancer : `k apply -f ./ingress-nginx/k3s/`
 3. Disable systemd-resolve service to stop it from listening on port 53 : `systemctl disable systemd-resolve`
 4. Set IP of one of your nodes as your DNS server. 
